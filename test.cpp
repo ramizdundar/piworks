@@ -12,13 +12,15 @@ int ninf = numeric_limits<int>::min();
 
 bool isPrime(int n);
 vector<vector<int>> read(string path);
+ostream& operator<<(ostream& os, vector<int> v);
+ostream& operator<<(ostream& os, vector<vector<int>> v);
 
 int main() { 
     vector<vector<int>> data = read("data3.txt");
 
     int height = data.size();
 
-    for (int i = 2; i < height; i++) {
+    for (int i = 1; i < height; i++) {
         for (int j = 0; j < data[i].size(); j++) {
             
             int &e = data[i][j];
@@ -48,8 +50,6 @@ int main() {
 
     if(isPrime(data[0][0]))
         maxpath = ninf;
-    else
-        maxpath += data[0][0];
 
     cout << "maximum path is: " << maxpath << endl;
     
@@ -88,4 +88,24 @@ vector<vector<int>> read(string path) {
     }
 
     return data;
+}
+
+ostream& operator<<(ostream& os, vector<int> v) {
+
+    for (int i = 0; i < v.size(); i++) {
+        os << v[i] << " ";
+    }
+
+    os << endl;
+
+    return os;
+}
+
+ostream& operator<<(ostream& os, vector<vector<int>> v) {
+
+    for (int i = 0; i < v.size(); i++) {
+        os << v[i];
+    }
+
+    return os;
 }
